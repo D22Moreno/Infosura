@@ -25,7 +25,7 @@
 		<br>
 	<center><h3><b>INFOSURA</b></h3></center>
   	<div class="form">
- 				<form action="menu.jsp">
+ 				<form action="LoginServlet" method="POST">
                                     
 					<div class="form-group">
 						<label>Usuario: </label><br>
@@ -39,10 +39,8 @@
 		  			<a href="#">¿Olvido su contraseña?</a>		
 		  			<br>		
 		  			<br>
-					<form action="UsuarioServlet" method="get">
                                         <button type="submit" class="btn btn-success btn-block bg-c6">Ingresar</button>
-                                        </form>
-                                        <p>${messaje}</p>
+                                        <p>${message}</p>
                                         
 	<script src="bootstrap-4/js/bootstrap.js"></script>
    	</div>	

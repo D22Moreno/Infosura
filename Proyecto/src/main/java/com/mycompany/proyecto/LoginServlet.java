@@ -6,6 +6,7 @@ package com.mycompany.proyecto;
 
 import com.mycompany.proyecto.entitys.Usuario;
 import java.io.IOException;
+import java.sql.SQLException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,14 +20,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+   @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             Usuario userModel = new Usuario();
-            userModel.setName(req.getParameter("username"));
+            userModel.setNomUsuraio(req.getParameter("username"));
             userModel.setPassword(req.getParameter("pass"));
             if(userModel.login()) {
-                resp.sendRedirect("UsuarioServlet");
+                resp.sendRedirect("UserServlet");
             } else {
                 req.setAttribute("message", "Usuario o contraseña incorrecto!");
                 req.getRequestDispatcher("index.jsp").forward(req, resp);

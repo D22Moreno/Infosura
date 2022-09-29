@@ -1,15 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.proyecto.entitys;
 
-import com.mycompany.proyecto.ConectorDB;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-
 /**
  *
  * @author DM
@@ -42,16 +38,19 @@ public class Usuario extends ConectorDB{
     }
     
     public List<Usuario> findAll () throws SQLException, ClassNotFoundException {
-        PreparedStatement ps = super.coon.prepareStatement("SELECT * FROM usuarios");
+        System.out.println("findall");
+        PreparedStatement ps = super.coon.prepareStatement("SELECT * FROM infosura.usuarios");
+        System.out.println("findall");
         ResultSet rs = ps.executeQuery();
-        List<Usuario> users = new ArrayLits ();
+        List<Usuario> users = new ArrayList();
         while(rs.next()){
+            System.out.println("findall");
             Usuario usuarioData = new Usuario();
-            usuarioData.setIdUsuario(rs.getInt(idUsuario));
-            usuarioData.setNomUsuraio(rs.getString(nomUsuraio));
-            usuarioData.setApelCliente(rs.getString(apelCliente));
-            usuarioData.setRol_idRol(rs.getInt(rol_idRol));
-            usuarioData.setPassword(rs.getString(password));
+            usuarioData.setIdUsuario(rs.getInt("idUsuario"));
+            usuarioData.setNomUsuraio(rs.getString("nomUsuario"));
+            usuarioData.setApelCliente(rs.getString("apelCliente"));
+            usuarioData.setRol_idRol(rs.getInt("rol_idRol"));
+            usuarioData.setPassword(rs.getString("password"));
             users.add(usuarioData);
         }
         return users;
@@ -203,6 +202,52 @@ public class Usuario extends ConectorDB{
      */
     public void setConfpassword(String confpassword) {
         this.confpassword = confpassword;
+    }
+    
+    public void update() throws SQLException {
+        PreparedStatement ps = super.coon.prepareStatement("UPDATE users SET name = ?, no_cuenta = ?, password = ?, saldo = ? WHERE idusers = ?");
+        ps.setString(1, nomUsuraio);
+        ps.setString(2, password);
+        ps.setInt(3, rol_idRol);
+        ps.executeUpdate();
+    }
+    
+     public void create() throws SQLException {
+        PreparedStatement ps = super.coon.prepareStatement("INSERT INTO users VALUES (null, ?, ?, ?, ?)");
+         ps.setString(1, nomUsuraio);
+        ps.setString(2, password);
+        ps.setInt(3, rol_idRol);
+        ps.executeUpdate();
+    }
+     
+     public void delete() throws SQLException {
+        PreparedStatement ps = super.coon.prepareStatement("DELETE FROM users WHERE idusers = ?");
+        ps.setString(1, nomUsuraio);
+        ps.executeUpdate();
+    }
+     
+     public Usuario findById() throws SQLException, ClassNotFoundException {
+        PreparedStatement ps = super.coon.prepareStatement("SELECT * FROM users WHERE idusers = ?");
+        ps.setString(1, nomUsuraio);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next() == false) {
+            return null;
+        }
+        Usuario userData = new Usuario();
+        userData.setIdUsuario(rs.getInt("idUsuario"));
+        userData.setNomUsuraio(rs.getString("nomUsuario"));
+        userData.setApelCliente(rs.getString("apelCliente"));
+        userData.setRol_idRol(rs.getInt("rol_idRol"));
+        userData.setPassword(rs.getString("password"));
+        return userData;
+    }
+     
+     public boolean login() throws SQLException {
+        PreparedStatement ps = super.coon.prepareStatement("SELECT * FROM infosura.usuarios WHERE nomUsuario = ? AND password = ?");
+        ps.setString(1, nomUsuraio);
+        ps.setString(2, password);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
     }
 
     
