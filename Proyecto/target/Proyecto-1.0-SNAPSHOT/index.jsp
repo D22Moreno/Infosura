@@ -25,7 +25,8 @@
 		<br>
 	<center><h3><b>INFOSURA</b></h3></center>
   	<div class="form">
- 				<form action="menu.jsp">		
+ 				<form action="menu.jsp">
+                                    
 					<div class="form-group">
 						<label>Usuario: </label><br>
 						<input type="text" onkeypress="return soloLetras(event)" name="username" placeholder="Digite su Usuario" class="form-control" required>
@@ -38,8 +39,11 @@
 		  			<a href="#">¿Olvido su contraseña?</a>		
 		  			<br>		
 		  			<br>
-					<button type="submit" class="btn btn-success btn-block bg-c6">Ingresar</button>
-  		</form>
+					<form action="UsuarioServlet" method="get">
+                                        <button type="submit" class="btn btn-success btn-block bg-c6">Ingresar</button>
+                                        </form>
+                                        <p>${messaje}</p>
+                                        
 	<script src="bootstrap-4/js/bootstrap.js"></script>
    	</div>	
    </div>
