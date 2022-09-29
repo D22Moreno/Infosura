@@ -204,6 +204,7 @@ public class Usuario extends ConectorDB{
         this.confpassword = confpassword;
     }
     
+    /*
     public void update() throws SQLException {
         PreparedStatement ps = super.coon.prepareStatement("UPDATE users SET name = ?, no_cuenta = ?, password = ?, saldo = ? WHERE idusers = ?");
         ps.setString(1, nomUsuraio);
@@ -241,7 +242,7 @@ public class Usuario extends ConectorDB{
         userData.setPassword(rs.getString("password"));
         return userData;
     }
-     
+     */
      public boolean login() throws SQLException {
         PreparedStatement ps = super.coon.prepareStatement("SELECT * FROM infosura.usuarios WHERE nomUsuario = ? AND password = ?");
         ps.setString(1, nomUsuraio);

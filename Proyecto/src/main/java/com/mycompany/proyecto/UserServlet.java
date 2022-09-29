@@ -31,7 +31,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    @Override
+  /*  @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             String action = req.getParameter("action");
@@ -64,6 +64,6 @@ public class UserServlet extends HttpServlet {
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 }

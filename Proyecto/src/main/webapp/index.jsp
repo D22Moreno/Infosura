@@ -41,7 +41,7 @@
 		  			<br>
                                         <button type="submit" class="btn btn-success btn-block bg-c6">Ingresar</button>
                                         <p>${message}</p>
-                                        
+                                     
 	<script src="bootstrap-4/js/bootstrap.js"></script>
    	</div>	
    </div>
